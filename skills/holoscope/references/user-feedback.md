@@ -49,11 +49,11 @@ Fetch and follow the current [user feedback guide](https://langfuse.com/docs/obs
 
 **For implicit feedback (server-side):** Create the score where the behavior is already handled in application code.
 
-**For explicit feedback (frontend):** Make the relevant trace ID available to the frontend and use the current Langfuse browser SDK with a public key only. Never expose a secret key in browser code.
+**For explicit feedback (frontend):** Route feedback through your application's own backend: the frontend calls your API with the trace ID, and your server creates the score via `POST /api/public/scores`. Do not use the Langfuse browser SDK directly against HoloScope — the gateway currently rejects CORS preflight (`OPTIONS` returns 401 with no `Access-Control-Allow-*` headers), so browsers block the direct call. Never expose a secret key in browser code.
 
 ### 4. Verify
 
-Trigger a feedback action and read the score back (e.g. `GET /api/public/v3/scores` filtered to the trace). Confirm the score name, value, and data type are correct.
+Trigger a feedback action and read the score back with `GET /api/public/v2/scores?traceId=...` — use v2, not v3: the v3 response omits `observationId` and `comment`, so you cannot verify the association there. Confirm the score name, value, and data type are correct.
 
 Point users to what they can do with feedback data: filter traces by low scores and track score trends over time.
 
@@ -61,6 +61,6 @@ Point users to what they can do with feedback data: filter traces by low scores 
 
 | Mistake | Problem | Fix |
 |---------|---------|-----|
-| Secret key in frontend code | Security risk | Use the current browser SDK with a public key only |
+| API keys in frontend code | Security risk, and browser calls fail anyway (CORS preflight rejected) | Proxy feedback through your backend; keep keys server-side |
 | Missing `dataType` on boolean scores | Value `1` inferred as `NUMERIC` | Always pass `dataType: "BOOLEAN"` explicitly |
 | Inconsistent score names across the app | Can't aggregate or filter reliably | Pick one name per feedback type, use it everywhere |

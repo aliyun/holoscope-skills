@@ -62,6 +62,8 @@ Instrumentation isn't done when the code compiles. This is a loop you own as the
 
 For each observation ask: is all data a user might need later, to understand exactly what context the agent had when it made decisions, available?
 
+Cost caveat: `calculatedTotalCost` is 0 for models missing from the bundled default price table (including Qwen models, verified), even when usage is captured correctly — and there is no models API to add prices. Judge token capture by `usage`, not cost.
+
 **d.** Fix every gap, then re-run and re-fetch to confirm. Repeat until the trace clears the guidance. Then report what you audited and changed, and link the final trace.
 
 ### 4. Explore Traces With the User
