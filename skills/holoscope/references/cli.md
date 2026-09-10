@@ -58,4 +58,5 @@ export LANGFUSE_BASE_URL=<HoloScope endpoint>   # console: HoloScope服务 -> �
 - More by-id gaps: `GET /media/{id}`, `GET /dataset-run-items/{id}`, and any `DELETE` on datasets all 404 — media is write-only (POST + PATCH), datasets can only be deleted in the console.
 - `prompts`, `metrics`, `annotation-queues`, `comments`, `score-configs`, `models`, and org/project-management resources 404 despite appearing in `__schema` (verified).
 - Reads are eventually consistent: a list right after a write can come back empty (observed ~5s lag on dataset run items). Retry after a few seconds before concluding the write failed.
+- Session time is timezone-shifted: `GET /sessions` and `GET /sessions/{id}` return `createdAt` in the backend default timezone (Asia/Shanghai, UTC+8) while labeling it `Z`; `traces.timestamp` is true UTC. Treat the offset as instance-specific rather than fixed — verify it by cross-checking a session against its own traces before filtering, sorting, or windowing by session time (verified).
 - Pagination on the v1 endpoints is page-based (`--limit`/`--page`); responses carry `meta: {page, limit, totalItems, totalPages}`.
