@@ -9,6 +9,7 @@
 | Skill                                                           | Description                                                                                        |
 | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [langfuse](./skills/langfuse)                                   | Main skill to work with Langfuse. Query and manage traces, prompts, datasets, and scores via the Langfuse API; look up documentation; do things with best practices in mind. |
+| [holoscope](./skills/holoscope)                                 | Work with Alibaba Cloud HoloScope (Hologres agent observability, Langfuse-v4-API-compatible). Same workflows scoped to HoloScope's supported API surface. |
 
 ## Installation
 
