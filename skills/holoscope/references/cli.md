@@ -55,6 +55,8 @@ export LANGFUSE_HOST="$LANGFUSE_BASE_URL"
 - Use `--json` for machine-readable JSON output; `--curl` to preview the HTTP request without executing
 - All list commands support filtering — check `<resource> <action> --help` for available options
 - Scores: create via `POST /api/public/scores`. Read via v3 (`GET /api/public/v3/scores`) for slim records (no `traceId`/`observationId`/`comment`/`metadata` in the response; typed `value`), or v2 (`GET /api/public/v2/scores`) when you need those association fields — the data is stored either way, v3 just doesn't return it.
+- Trace deletion: `DELETE /api/public/traces/{id}` and bulk `DELETE /api/public/traces` with body `{"traceIds": [...]}` both work (verified). Deleting a trace cascades to its scores — the only way to remove a score, as there is no score delete or get-by-id endpoint.
+- More by-id gaps: `GET /media/{id}`, `GET /dataset-run-items/{id}`, and any `DELETE` on datasets all 404 — media is write-only (POST + PATCH), datasets can only be deleted in the console.
 - `prompts`, `metrics`, `annotation-queues`, `comments`, `score-configs`, `models`, and org/project-management resources 404 despite appearing in `__schema` (verified).
 - Reads are eventually consistent: a list right after a write can come back empty (observed ~5s lag on dataset run items). Retry after a few seconds before concluding the write failed.
 - Pagination on the v1 endpoints is page-based (`--limit`/`--page`); responses carry `meta: {page, limit, totalItems, totalPages}`.
