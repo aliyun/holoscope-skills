@@ -4,7 +4,7 @@ description: Upgrade Langfuse SDKs and application instrumentation while preserv
 metadata:
   required_access:
     - CODEBASE
-    - LANGFUSE_PROJECT_SCRIPT
+    - HOLOSCOPE_PROJECT_SCRIPT
 ---
 
 # SDK upgrade (HoloScope)

@@ -1,44 +1,41 @@
 {
-  "name": "langfuse",
-  "version": "1.6.0",
-  "description": "Skills for working with Langfuse, the open-source LLM engineering platform for tracing, prompt management, and evaluation.",
+  "name": "holoscope",
+  "version": "2.0.0",
+  "description": "A skill for Alibaba Cloud HoloScope (Hologres) agent observability, tracing, datasets, and evaluation.",
   "author": {
-    "name": "Langfuse",
-    "email": "support@langfuse.com",
-    "url": "https://langfuse.com"
+    "name": "HoloScope"
   },
-  "homepage": "https://langfuse.com",
-  "repository": "https://github.com/langfuse/skills",
+  "homepage": "https://help.aliyun.com/zh/hologres/user-guide/activate-and-billing-of-holoscope",
+  "repository": "git@gitlab.alibaba-inc.com:kunwu.dy/holoscope-skills.git",
   "license": "MIT",
   "keywords": [
-    "langfuse",
+    "holoscope",
+    "hologres",
+    "alibaba-cloud",
     "llm",
     "observability",
     "tracing",
-    "prompt-management",
+    "datasets",
     "evaluation"
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Langfuse",
-    "shortDescription": "Work with Langfuse tracing, prompts, datasets, scores, and docs.",
-    "longDescription": "Reusable workflows for instrumenting applications, querying Langfuse traces, managing prompts, running evaluations, and using Langfuse documentation from ChatGPT or Codex.",
-    "developerName": "Langfuse",
+    "displayName": "HoloScope",
+    "shortDescription": "Work with HoloScope tracing, datasets, scores, evaluations, and documentation.",
+    "longDescription": "Workflows for instrumenting applications, querying traces, managing datasets and evaluations, and using product-specific guidance for Alibaba Cloud HoloScope.",
+    "developerName": "HoloScope",
     "category": "Developer Tools",
     "capabilities": [
       "Read",
       "Write"
     ],
     "defaultPrompt": [
-      "Set up Langfuse tracing in this app.",
-      "Inspect Langfuse traces for recent failures.",
-      "Migrate prompts into Langfuse.",
-      "Upgrade this application's Langfuse SDKs and instrumentation, verify session and other correlating attributes on every applicable child observation, and prepare its Langfuse project for the v4 platform migration."
+      "Connect this application to HoloScope and verify the resulting traces.",
+      "Inspect HoloScope traces for recent failures.",
+      "Create a HoloScope dataset for regression testing.",
+      "Set up evaluation for this application in HoloScope.",
+      "Upgrade this application's Langfuse SDK instrumentation for HoloScope and verify attributes on every applicable observation."
     ],
-    "websiteURL": "https://langfuse.com",
-    "privacyPolicyURL": "https://langfuse.com/privacy",
-    "termsOfServiceURL": "https://langfuse.com/terms",
-    "brandColor": "#F97316",
-    "logo": "./assets/logo.png"
+    "websiteURL": "https://help.aliyun.com/zh/hologres/user-guide/activate-and-billing-of-holoscope"
   }
 }

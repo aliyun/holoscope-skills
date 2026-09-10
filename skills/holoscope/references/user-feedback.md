@@ -4,7 +4,7 @@ description: Wires up user feedback (thumbs up/down, ratings, comments) from an 
 metadata:
   required_access:
     - CODEBASE
-    - LANGFUSE_PROJECT_SCRIPT
+    - HOLOSCOPE_PROJECT_SCRIPT
 ---
 
 # User Feedback

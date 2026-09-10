@@ -3,7 +3,7 @@ name: holoscope-setting-up-evals
 description: Set up evaluation on HoloScope by finding gaps across signal capture, monitoring, built-in evaluators, and custom evaluator metrics, then addressing the right one first.
 metadata:
   required_access:
-    - LANGFUSE_PROJECT_INTERFACE
+    - HOLOSCOPE_PROJECT_INTERFACE
 ---
 
 # Setting up evals

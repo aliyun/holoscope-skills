@@ -2,7 +2,8 @@
 name: holoscope-prompt-engineering
 description: Write or change prompts in code. Use whenever the user asks to create, edit, rewrite, debug, tune, or otherwise modify a prompt, including a small wording or instruction change.
 metadata:
-  required_access: []
+  required_access:
+    - CODEBASE
 ---
 
 # Prompt Engineering

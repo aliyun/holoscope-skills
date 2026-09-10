@@ -3,7 +3,7 @@ name: holoscope-cli
 description: Langfuse CLI usage against a HoloScope endpoint — install, resource/action discovery, credentials, and which CLI resources work vs 404. Use for further tips on using the Langfuse CLI with HoloScope.
 metadata:
   required_access:
-    - LANGFUSE_PROJECT_INTERFACE
+    - HOLOSCOPE_PROJECT_INTERFACE
 ---
 
 # Langfuse CLI against HoloScope

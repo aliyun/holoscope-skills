@@ -18,7 +18,7 @@ allowed-tools:
 
 # HoloScope
 
-HoloScope is Alibaba Cloud's agent observability and evaluation service (part of Hologres). It exposes a Langfuse-v4-compatible API subset, so Langfuse SDKs, the `langfuse-cli`, and Langfuse docs on SDK/API usage apply — within the supported surface below.
+HoloScope is Alibaba Cloud's agent observability and evaluation service (part of Hologres). It exposes a Langfuse-compatible API subset, so Langfuse SDKs, the `langfuse-cli`, and Langfuse docs on SDK/API usage apply — within the supported surface below.
 
 ## Core Principles
 
@@ -80,10 +80,6 @@ export LANGFUSE_HOST="$LANGFUSE_BASE_URL"       # some tools read LANGFUSE_HOST 
 ```
 
 API key pairs are created in the console under the project's **Agent快速接入 -> API Key管理**. The Secret Key is shown in full only once at creation — treat it as unrecoverable. If the user has no HoloScope service yet: it is in public beta (free) and currently available only in China East 1 (Hangzhou); see [activation and billing](https://help.aliyun.com/zh/hologres/user-guide/activate-and-billing-of-holoscope). Do not ask users to paste keys into chat for security reasons.
-
-### Detailed CLI Reference
-
-For HoloScope-specific resource availability, tips, and usage patterns, see [references/cli.md](references/cli.md).
 
 ## 2. Documentation
 

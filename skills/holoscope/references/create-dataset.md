@@ -3,8 +3,8 @@ name: holoscope-dataset-construction
 description: Collaborative dataset creation workflow on HoloScope. Use when the user needs to create, design, seed, reshape, review, or upload a dataset or dataset version; especially when they need a minimal but complete dataset, e.g. for quality checks or avoiding regression.
 metadata:
   required_access:
-    - LANGFUSE_PROJECT_INTERFACE
-    - LANGFUSE_PROJECT_SCRIPT
+    - HOLOSCOPE_PROJECT_INTERFACE
+    - HOLOSCOPE_PROJECT_SCRIPT
 ---
 
 # HoloScope Dataset Construction

@@ -1,5 +1,5 @@
-# Langfuse Skills — Project Instructions
+# HoloScope Skill — Project Instructions
 
-The authoring and review guidance for this repo lives in `AGENTS.md`. It is the single source of truth; read and follow it in full. When reviewing a PR, the review criteria in its `## Reviewing Pull Requests` section apply.
+The authoring and review guidance for this repository lives in `AGENTS.md`. Read and follow it in full. When reviewing a merge request, apply the criteria in its `## Reviewing Changes` section.
 
 @AGENTS.md

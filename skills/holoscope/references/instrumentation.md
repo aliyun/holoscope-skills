@@ -4,7 +4,7 @@ description: Instrument LLM applications with tracing reported to HoloScope. Use
 metadata:
   required_access:
     - CODEBASE
-    - LANGFUSE_PROJECT_SCRIPT
+    - HOLOSCOPE_PROJECT_SCRIPT
 ---
 
 # HoloScope Observability
@@ -56,7 +56,7 @@ Instrumentation isn't done when the code compiles. This is a loop you own as the
 
 **a.** Execute the instrumented path end-to-end so a trace is actually sent.
 
-**b.** Fetch the trace(s) you just created from HoloScope — `langfuse-cli` is usually simplest (see [references/cli.md](references/cli.md)), REST also works.
+**b.** Fetch the trace(s) you just created from HoloScope — `langfuse-cli` is usually simplest (see [cli.md](cli.md)), REST also works.
 
 **c.** Audit the trace against the best-practices page. **Always fetch it fresh — never audit from memory** (the guidance changes over time): https://langfuse.com/docs/observability/best-practices
 
