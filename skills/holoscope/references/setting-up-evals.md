@@ -21,7 +21,7 @@ Before advising:
 
 - Inspect enough representative traces to present concrete findings of your own before asking about metrics.
 - Inventory existing datasets, evaluators, traces, etc. as context; do not assume they should be reused or represent a current priority. Treat their importance as unconfirmed until the user agrees.
-- **Inventory HoloScope's built-in evaluators first** (`GET /api/public/unstable/evaluators`): the service ships 8 Qwen-powered LLM-as-a-judge evaluators (hallucination, faithfulness, answer relevance, context relevance, context recall, toxicity, correctness, conciseness) that run automatically on live traces with per-evaluator toggles and a sampling rate — see [Agent evaluation](https://help.aliyun.com/zh/hologres/user-guide/agent-evaluation-in-holoscope). Treat enabled built-ins as existing coverage; never delete them.
+- **Inventory HoloScope's built-in evaluators first**: the service ships 8 Qwen-powered LLM-as-a-judge evaluators (hallucination, faithfulness, answer relevance, context relevance, context recall, toxicity, correctness, conciseness) that run automatically on live traces with per-evaluator toggles and a sampling rate — see [Agent evaluation](https://help.aliyun.com/zh/hologres/user-guide/agent-evaluation-in-holoscope). Probe `GET /api/public/unstable/evaluators`; if it 404s (v4-gated, see SKILL.md), inventory via the console instead. Built-in scores land with Title Case names (e.g. `Answer Relevance`) and `source: EVAL`; the evaluator runs themselves appear as traces under environment `langfuse-llm-as-a-judge`, so exclude that environment when inspecting application traces. Treat enabled built-ins as existing coverage; never delete them.
 - Identify what is already surfaced through trace errors, logged data, existing scores, or other monitoring; what is available but not monitored; what important user or product signals are not captured; and what genuinely requires an evaluator.
 - Do not ask the user for information you can inspect.
 - If project access is unavailable, say so instead of substituting a generic plan.
@@ -54,7 +54,7 @@ Do not treat any metric as selected, choose evaluator types, ask implementation 
 
 ## Build the evaluator
 
-For evaluator functionality, use the unstable API endpoints (`/api/public/unstable/evaluators`, `/api/public/unstable/evaluation-rules`).
+For evaluator functionality, use the unstable API endpoints (`/api/public/unstable/evaluators`, `/api/public/unstable/evaluation-rules`). If they 404 (v4-gated backend, see SKILL.md), configure evaluators in the HoloScope console instead.
 
 Follow [Writing good evaluators](https://langfuse.com/academy/evaluate/writing-evaluators) to choose the evaluator type; do not always default to an LLM-as-a-judge.
 

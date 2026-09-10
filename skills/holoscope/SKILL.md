@@ -34,9 +34,9 @@ Follow these principles for ALL HoloScope work:
 
 All paths relative to the HoloScope endpoint (see Credentials). Unlisted paths return 404.
 
-- **Write**: `POST /api/public/otel/v1/traces` (OTLP/HTTP, preferred) and `POST /api/public/otel/v1/metrics`; `POST /api/public/ingestion` (legacy batch — Langfuse sunsets this path Nov 2026); `POST /api/public/scores`; media upload (`POST /api/public/media`, `PATCH /api/public/media/{mediaId}`)
-- **Read/manage**: traces `GET`/`DELETE /api/public/traces` and `.../{traceId}`; observations `GET /api/public/observations` and `.../{observationId}` (v1 only); sessions `GET /api/public/sessions` and `.../{sessionId}`; scores `GET /api/public/v3/scores` and `GET /api/public/v2/scores`; datasets `GET/POST /api/public/v2/datasets` and `GET .../{datasetName}`; dataset items `POST/GET /api/public/dataset-items` and `GET/DELETE .../{id}`; dataset run items `POST/GET /api/public/dataset-run-items`; runs `GET /api/public/datasets/{datasetName}/runs` and `GET/DELETE .../{runName}`; experiments `GET /api/public/experiments` and `GET /api/public/experiment-items`; `GET /api/public/projects` (SDK auth check); `GET /api/public/health`
-- **Evaluators (unstable API)**: `GET/POST /api/public/unstable/evaluators` and `GET/DELETE .../{evaluatorId}`; `GET/POST /api/public/unstable/evaluation-rules` and `GET/PATCH/DELETE .../{evaluationRuleId}`
+- **Write**: `POST /api/public/otel/v1/traces` (OTLP/HTTP, preferred) and `POST /api/public/otel/v1/metrics`; `POST /api/public/ingestion` (legacy batch — Langfuse sunsets this path Nov 2026); `POST /api/public/scores`; media upload (`POST /api/public/media`, `PATCH /api/public/media/{mediaId}` — returned upload URLs point to an OSS-internal host, so the direct PUT succeeds only from inside Alibaba Cloud VPC)
+- **Read/manage**: traces `GET`/`DELETE /api/public/traces` and `.../{traceId}`; observations `GET /api/public/observations` and `.../{observationId}` (v1 only); sessions `GET /api/public/sessions` and `.../{sessionId}`; scores `GET /api/public/v3/scores` and `GET /api/public/v2/scores`; datasets `GET/POST /api/public/v2/datasets` and `GET .../{datasetName}`; dataset items `POST/GET /api/public/dataset-items` and `GET/DELETE .../{id}`; dataset run items `POST/GET /api/public/dataset-run-items`; runs `GET /api/public/datasets/{datasetName}/runs` and `GET/DELETE .../{runName}`; `GET /api/public/projects` (SDK auth check); `GET /api/public/health` (requires Basic auth, unlike upstream Langfuse)
+- **v4-gated (probe with a GET before relying on these)**: experiments `GET /api/public/experiments` (requires `fromStartTime`) and `GET /api/public/experiment-items`; evaluators `GET/POST /api/public/unstable/evaluators` and `GET/DELETE .../{evaluatorId}`; `GET/POST /api/public/unstable/evaluation-rules` and `GET/PATCH/DELETE .../{evaluationRuleId}`. The gateway allows these, but they need a Langfuse v4-write-mode backend — on a v3-write-mode backend they currently return 404.
 - **Not available (404)**: prompt management, annotation queues, comments, metrics query APIs (`/metrics`, `/metrics/daily`), `GET /api/public/v2/observations`, score configs, models, org/project management.
 
 ## Use case specific references
@@ -54,6 +54,10 @@ All paths relative to the HoloScope endpoint (see Credentials). Unlisted paths r
 Use the `langfuse-cli` to interact with the HoloScope API from the command line. Run via npx (no install required):
 
 ```bash
+# HoloScope runs a Langfuse 3.x backend — always pass --api-version 3.225.3
+# (the CLI's default 4.x snapshot refuses the v1 read endpoints as deprecated)
+npx langfuse-cli api --api-version 3.225.3 <resource> <action>
+
 # Discover all available resources (lists the FULL Langfuse API — cross-check against the supported surface above)
 npx langfuse-cli api __schema
 
