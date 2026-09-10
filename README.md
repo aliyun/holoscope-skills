@@ -41,7 +41,6 @@ Create a key pair under **HoloScope服务 > Agent快速接入 > API Key管理** 
 export LANGFUSE_PUBLIC_KEY=pk-...
 export LANGFUSE_SECRET_KEY=sk-...
 export LANGFUSE_BASE_URL=<HoloScope endpoint>
-export LANGFUSE_HOST="$LANGFUSE_BASE_URL"
 ```
 
 The `LANGFUSE_*` names are required by the compatible SDK and CLI; this plugin contains only the HoloScope skill.

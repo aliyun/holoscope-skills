@@ -76,7 +76,6 @@ Set environment variables before making calls:
 export LANGFUSE_PUBLIC_KEY=pk-...
 export LANGFUSE_SECRET_KEY=sk-...
 export LANGFUSE_BASE_URL=<HoloScope endpoint>   # copy from console: HoloScope服务 -> 概览 -> 连接管理 (no derivable URL pattern)
-export LANGFUSE_HOST="$LANGFUSE_BASE_URL"       # some tools read LANGFUSE_HOST instead
 ```
 
 API key pairs are created in the console under the project's **Agent快速接入 -> API Key管理**. The Secret Key is shown in full only once at creation — treat it as unrecoverable. If the user has no HoloScope service yet: it is in public beta (free) and currently available only in China East 1 (Hangzhou); see [activation and billing](https://help.aliyun.com/zh/hologres/user-guide/activate-and-billing-of-holoscope). Do not ask users to paste keys into chat for security reasons.

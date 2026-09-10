@@ -46,7 +46,6 @@ langfuse api <resource> <action> --curl
 export LANGFUSE_PUBLIC_KEY=pk-...
 export LANGFUSE_SECRET_KEY=sk-...
 export LANGFUSE_BASE_URL=<HoloScope endpoint>   # console: HoloScope服务 -> 概览 -> 连接管理
-export LANGFUSE_HOST="$LANGFUSE_BASE_URL"
 ```
 
 ## Tips
