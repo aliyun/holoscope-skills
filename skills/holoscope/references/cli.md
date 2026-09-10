@@ -56,4 +56,5 @@ export LANGFUSE_HOST="$LANGFUSE_BASE_URL"
 - All list commands support filtering — check `<resource> <action> --help` for available options
 - Scores: create via `POST /api/public/scores`; list via the v3 (`GET /api/public/v3/scores`) or v2 path.
 - `prompts`, `metrics`, `annotation-queues`, `comments`, `score-configs`, `models`, and org/project-management resources 404 despite appearing in `__schema` (verified).
+- Reads are eventually consistent: a list right after a write can come back empty (observed ~5s lag on dataset run items). Retry after a few seconds before concluding the write failed.
 - Pagination on the v1 endpoints is page-based (`--limit`/`--page`); responses carry `meta: {page, limit, totalItems, totalPages}`.
