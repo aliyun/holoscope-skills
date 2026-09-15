@@ -23,13 +23,13 @@ Install the HoloScope plugin:
 ### skills CLI
 
 ```bash
-npx skills add git@gitlab.alibaba-inc.com:kunwu.dy/holoscope-skills.git --skill "holoscope"
+npx skills add git@github.com:aliyun/holoscope-skills.git --skill "holoscope"
 ```
 
 ### Manual symlink
 
 ```bash
-git clone git@gitlab.alibaba-inc.com:kunwu.dy/holoscope-skills.git /path/to/holoscope-skills
+git clone git@github.com:aliyun/holoscope-skills.git /path/to/holoscope-skills
 ln -s /path/to/holoscope-skills/skills/holoscope /path/to/skills-directory/holoscope
 ```
 

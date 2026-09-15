@@ -1,12 +1,12 @@
 {
   "name": "holoscope",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A skill for Alibaba Cloud HoloScope (Hologres) agent observability, tracing, datasets, and evaluation.",
   "author": {
     "name": "HoloScope"
   },
   "homepage": "https://help.aliyun.com/zh/hologres/user-guide/activate-and-billing-of-holoscope",
-  "repository": "git@gitlab.alibaba-inc.com:kunwu.dy/holoscope-skills.git",
+  "repository": "git@github.com:aliyun/holoscope-skills.git",
   "license": "MIT",
   "keywords": [
     "holoscope",
