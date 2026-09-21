@@ -4,6 +4,7 @@ description: Instrument LLM applications with tracing reported to HoloScope. Use
 metadata:
   required_access:
     - CODEBASE
+    - HOLOSCOPE_PROJECT_INTERFACE
     - HOLOSCOPE_PROJECT_SCRIPT
 ---
 
@@ -33,6 +34,7 @@ Every trace should have these fundamentals:
 | Model name                | Is the LLM model captured?                                                               | Enables model comparison and filtering                 |
 | Token usage               | Are input/output tokens tracked?                                                         | Enables cost/usage analytics                           |
 | Good trace names          | Are names descriptive? (`chat-response`, not `trace-1`)                                  | Makes traces findable and filterable                   |
+| Service name              | Is OTel resource `service.name` explicitly non-empty before SDK initialization, and does readback confirm Trace/Observation attribution? | HoloScope Agent discovery, service filters, and evaluation rule selectors depend on it; a span-only addition may not repair legacy Trace records |
 | Span hierarchy            | Are multi-step operations nested properly?                                               | Shows which step is slow or failing                    |
 | Correct observation types | Are generations marked as generations, and is each other call given its most specific type (`retriever` for a lookup, `agent` for a subagent, etc.) rather than a generic `tool`/`span`? See the [observation types docs](https://langfuse.com/docs/observability/features/observation-types). | Enables model-specific analytics and a readable trace tree |
 | Sensitive data masked     | Is PII/confidential data excluded or masked?                                             | Prevents data leakage                                  |
@@ -56,13 +58,13 @@ Instrumentation isn't done when the code compiles. This is a loop you own as the
 
 **a.** Execute the instrumented path end-to-end so a trace is actually sent.
 
-**b.** Fetch the trace(s) you just created from HoloScope — `langfuse-cli` is usually simplest (see [cli.md](cli.md)), REST also works.
+**b.** Fetch the trace(s) you just created from HoloScope — the Langfuse CLI is usually simplest (see [cli.md](cli.md)); REST also works.
 
 **c.** Audit the trace against the best-practices page. **Always fetch it fresh — never audit from memory** (the guidance changes over time): https://langfuse.com/docs/observability/best-practices
 
 For each observation ask: is all data a user might need later, to understand exactly what context the agent had when it made decisions, available?
 
-Cost caveat: `calculatedTotalCost` is 0 for models missing from the bundled default price table (including Qwen models, verified), even when usage is captured correctly — and there is no models API to add prices. Judge token capture by `usage`, not cost.
+Cost caveat: `calculatedTotalCost` is 0 for models missing from the bundled default price table (including Qwen models, verified), even when usage is captured correctly. The Models API is outside HoloScope's documented strict Agent surface even though an upstream backend handler may exist; add custom pricing only when that exact operation is exposed and authorized on the target. Judge token capture by `usage`, not cost.
 
 **d.** Fix every gap, then re-run and re-fetch to confirm. Repeat until the trace clears the guidance. Then report what you audited and changed, and link the final trace.
 

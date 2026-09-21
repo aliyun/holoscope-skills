@@ -51,7 +51,9 @@ The agent automatically invokes the skill for HoloScope tasks, including:
 
 - Connecting an application or coding agent to HoloScope and auditing its traces
 - Querying traces, observations, sessions, scores, and datasets
-- Creating datasets and running evaluations
+- Turning traces into reviewed, reproducible regression datasets
+- Creating and calibrating custom evaluators, then deploying scoped evaluation rules
+- Running and resuming agent/model experiments with controlled repeats and paired comparisons
 - Capturing user-feedback scores
 - Upgrading compatible Langfuse SDK instrumentation used to report to HoloScope
 - Looking up HoloScope product documentation and compatible SDK/API guidance
