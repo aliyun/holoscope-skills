@@ -11,9 +11,13 @@ Keep credentials and test payloads outside the repository. Never commit HoloScop
 1. Validate that `skills/holoscope/SKILL.md` routes every reference exactly once.
 2. Keep every reference at 100 lines or fewer and preserve valid `metadata.required_access` values.
 3. Test changed HoloScope API behavior against an authorized environment, then read back created data to verify semantics rather than status codes alone.
-4. Tag test data clearly and delete it after verification. Never delete built-in evaluators or unrelated project data.
+4. Tag test data clearly. Delete only explicitly approved disposable resources after verification; never delete built-in evaluators or unrelated project data.
 5. Exercise representative prompts with more than one coding agent when routing or frontmatter descriptions change.
 6. Run JSON parsing and `git diff --check` before submitting.
+
+Run the dependency-free structural/content checks with `node --test tests/skill-contract.test.mjs`.
+They validate routing, reference limits/access declarations, manifests, and critical instruction guards, not API behavior.
+Keep test files outside `skills/`; that directory contains only runtime skill resources.
 
 ## Review checklist
 

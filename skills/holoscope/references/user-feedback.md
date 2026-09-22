@@ -4,6 +4,7 @@ description: Wires up user feedback (thumbs up/down, ratings, comments) from an 
 metadata:
   required_access:
     - CODEBASE
+    - HOLOSCOPE_PROJECT_INTERFACE
     - HOLOSCOPE_PROJECT_SCRIPT
 ---
 
@@ -47,13 +48,15 @@ Rules:
 
 Fetch and follow the current [user feedback guide](https://langfuse.com/docs/observability/features/user-feedback) and [score ingestion docs](https://langfuse.com/docs/evaluation/evaluation-methods/scores-via-sdk) before editing code. They contain the current browser and server SDK APIs plus framework-specific patterns for returning trace IDs to the frontend. Scores land on HoloScope via `POST /api/public/scores`.
 
+Send `dataType` explicitly and include a non-empty `comment` that describes the observed feedback action. Preserve user-supplied free text only under the application's privacy policy; when no text was supplied, record the action without inventing a reason for it.
+
 **For implicit feedback (server-side):** Create the score where the behavior is already handled in application code.
 
 **For explicit feedback (frontend):** Route feedback through your application's own backend: the frontend calls your API with the trace ID, and your server creates the score via `POST /api/public/scores`. Do not use the Langfuse browser SDK directly against HoloScope — the gateway currently rejects CORS preflight (`OPTIONS` returns 401 with no `Access-Control-Allow-*` headers), so browsers block the direct call. Never expose a secret key in browser code.
 
 ### 4. Verify
 
-Trigger a feedback action and read the score back with `GET /api/public/v2/scores?traceId=...` — use v2, not v3: the v3 response omits `observationId` and `comment`, so you cannot verify the association there. Confirm the score name, value, and data type are correct.
+Trigger a feedback action, then use the HoloScope-verified score read path: `GET /api/public/v3/scores?traceId=...&fields=core,details,subject`. These field groups return `comment`, `metadata`, and typed `subject` on the verified HoloScope pre-production deployment. Accept the readback only when it matches the created score ID (when supplied or returned), name, typed value, `dataType`, non-empty `comment`, and `subject.kind`/`subject.id`/`subject.traceId` association. A core-only response does not verify the feedback record because it omits the required explanation and association details.
 
 Point users to what they can do with feedback data: filter traces by low scores and track score trends over time.
 

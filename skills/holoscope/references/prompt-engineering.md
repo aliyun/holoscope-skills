@@ -21,7 +21,7 @@ metadata:
 2. **Trace the failure to the prompt.** Look for a missing, ambiguous, or conflicting instruction.
 3. **Fix the failure class, not the example.** Generalize the observed mistake into an error class and write the instruction at that level, in your own words. Cover adjacent cases, but do not add definitions, rules, or examples for unobserved problems or encode the failing example itself. If a generalized instruction does not work, report the failure instead of narrowing the rule to that case.
 4. **Preserve existing behavior.** Before changing text, identify what behavior it protects. Avoid contradicting other rules or breaking cases that already work.
-5. **Make the smallest testable edit.** Change one cause per attempt so you can attribute the result. Avoid extra length, emphasis, or all-caps. Keep each attempt as a distinct version in the codebase (git) so you can compare and roll back — HoloScope has no prompt management API.
+5. **Make the smallest testable edit.** Change one cause per attempt so you can attribute the result. Avoid extra length, emphasis, or all-caps. Keep each attempt as a distinct version in the codebase (git) so you can compare and roll back — prompt management is outside HoloScope's documented strict Agent API surface unless the target explicitly verifies it.
 
 ## Model-specific tuning
 

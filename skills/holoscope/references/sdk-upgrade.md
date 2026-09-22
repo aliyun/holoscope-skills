@@ -9,7 +9,7 @@ metadata:
 
 # SDK upgrade (HoloScope)
 
-Target the OTel-based majors (Python v4, JS/TS v5): HoloScope's primary ingestion is OTLP/HTTP, and Langfuse sunsets the legacy `/api/public/ingestion` batch path in Nov 2026.
+Target the OTel-based majors (Python v4, JS/TS v5): HoloScope's primary ingestion is OTLP/HTTP. Langfuse Cloud sunsets legacy trace/observation events sent through `/api/public/ingestion` on 2026-11-16, while `score-create` remains supported; verify HoloScope's deployment timeline separately.
 
 ## Sources of truth
 
@@ -22,7 +22,7 @@ Determine every installed Langfuse SDK major version, then fetch each applicable
 - [Sessions and session-level metrics](https://langfuse.com/docs/observability/features/sessions)
 - [Direct OpenTelemetry ingestion](https://langfuse.com/integrations/native/opentelemetry)
 
-Follow every intermediate guide when the installed version is more than one major behind. Use the current docs for implementation details; do not copy examples from this file. Skip any guide step that depends on endpoints HoloScope does not serve (prompt management, metrics query APIs — see the supported API surface in SKILL.md).
+Follow every intermediate guide when the installed version is more than one major behind. Use the current docs for implementation details; do not copy examples from this file. Skip any guide step that depends on endpoints outside HoloScope's documented strict Agent surface unless the target explicitly verifies the operation (see SKILL.md).
 
 ## Workflow
 

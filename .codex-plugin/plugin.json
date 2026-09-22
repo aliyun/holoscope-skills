@@ -1,6 +1,6 @@
 {
   "name": "holoscope",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "A skill for Alibaba Cloud HoloScope (Hologres) agent observability, tracing, datasets, and evaluation.",
   "author": {
     "name": "HoloScope"
@@ -34,6 +34,7 @@
       "Inspect HoloScope traces for recent failures.",
       "Create a HoloScope dataset for regression testing.",
       "Set up evaluation for this application in HoloScope.",
+      "Compare two agents or models on a frozen HoloScope dataset with repeated trials and verified scores.",
       "Upgrade this application's Langfuse SDK instrumentation for HoloScope and verify attributes on every applicable observation."
     ],
     "websiteURL": "https://help.aliyun.com/zh/hologres/user-guide/activate-and-billing-of-holoscope"
