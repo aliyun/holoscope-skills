@@ -64,7 +64,7 @@ Instrumentation isn't done when the code compiles. This is a loop you own as the
 
 For each observation ask: is all data a user might need later, to understand exactly what context the agent had when it made decisions, available?
 
-Cost caveat: `calculatedTotalCost` is 0 for models missing from the bundled default price table (including Qwen models, verified), even when usage is captured correctly. The Models API is outside HoloScope's documented strict Agent surface even though an upstream backend handler may exist; add custom pricing only when that exact operation is exposed and authorized on the target. Judge token capture by `usage`, not cost.
+Cost caveat: `calculatedTotalCost` is 0 for models missing from the bundled default price table (including Qwen models, verified), even when usage is captured correctly. Judge token capture by `usage`, not cost.
 
 **d.** Fix every gap, then re-run and re-fetch to confirm. Repeat until the trace clears the guidance. Then report what you audited and changed, and link the final trace.
 

@@ -46,12 +46,11 @@ Read [experiment data model](https://langfuse.com/docs/evaluation/experiments/da
 - If candidate output/trace is durable but association or score upload failed, retry only the missing step. If the candidate outcome is unknown, record that attempt and request a budgeted retry; never silently invoke production tools again.
 - Preserve partial runs and a resume ledger on cancellation, budget exhaustion, or errors. Cleanup is a separately approved operation on exact disposable resources; never delete source traces or built-in evaluators.
 
-## Recover hosted judge failures separately
+## Diagnose hosted judge gaps
 
-- Group execution statuses/errors by rule and inspect job/score IDs before changing anything. A `PENDING` database status can coexist with an active queue job; check lock, elapsed time, delayed release, attempts, and completion. Completed executions should have a readable `jobOutputScoreId`, not merely a finished queue record.
-- For LLM timeouts, separate candidate runtime, HTTP client, hosted worker, queue retry, and provider limits. Where operator access is authorized, inspect `LANGFUSE_FETCH_LLM_COMPLETION_TIMEOUT_MS` and concurrency in every live worker after rollout. A larger timeout does not automatically retry old `ERROR` executions; inspect retry policy and request a bounded recovery action.
-- Before recovery, verify exact stored evaluation inputs, identifiers, and reference availability. Check the tenant prefix and `.json` suffix of object keys; a missing key or an absent match on the first listing page does not prove the input is lost. Never fabricate recovery input or rewrite storage from a guessed path.
-- Preview only failed eligible execution IDs, preserve completed scores, and reconcile already-active jobs. Use a supported recovery path; queue/database intervention requires explicit operator approval and a reviewed payload. Recover one execution and verify its score before throttled batch release; do not replay candidates or reset all jobs. Monitor until all are accounted for or report residual failures.
+- Read the rule through `GET /api/public/unstable/evaluation-rules/{evaluationRuleId}` and scores through `GET /api/public/v3/scores` with supported filters. Compare enabled state, evaluator identity, selectors, and sampling with the ledger and expected score coverage; missing scores alone do not establish a worker failure.
+- Preserve missing and failed judgments separately from candidate failures. Retain known rule/trace/score IDs, the time window, request IDs, and returned errors; redact inputs and credentials before sharing diagnostics.
+- Use the Console UI or contact support for additional hosted execution status, timeout diagnosis, or recovery. Do not replay candidates/judges or toggle live rules as a retry mechanism; any proposed rerun needs an explicit scope and budget.
 
 ## Compare and report
 

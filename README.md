@@ -35,7 +35,7 @@ ln -s /path/to/holoscope-skills/skills/holoscope /path/to/skills-directory/holos
 
 ## Prerequisites
 
-Create a key pair under **HoloScope服务 > Agent快速接入 > API Key管理** and copy the endpoint from **HoloScope服务 > 概览 > 连接管理**. The Secret Key is displayed only once; do not commit it.
+For project-key API workflows, create a key pair under **HoloScope服务 > Agent快速接入 > API Key管理** and copy the endpoint from **HoloScope服务 > 概览 > 连接管理**. The Secret Key is displayed only once; do not commit it.
 
 ```bash
 export LANGFUSE_PUBLIC_KEY=pk-...
@@ -45,6 +45,8 @@ export LANGFUSE_BASE_URL=<HoloScope endpoint>
 
 The `LANGFUSE_*` names are required by the compatible SDK and CLI; this plugin contains only the HoloScope skill.
 
+The skill's callable workflows use the public Agent endpoint and project API keys.
+
 ## Usage
 
 The agent automatically invokes the skill for HoloScope tasks, including:
@@ -52,7 +54,8 @@ The agent automatically invokes the skill for HoloScope tasks, including:
 - Connecting an application or coding agent to HoloScope and auditing its traces
 - Querying traces, observations, sessions, scores, and datasets
 - Turning traces into reviewed, reproducible regression datasets
-- Creating and calibrating custom evaluators, then deploying scoped evaluation rules
+- Creating and validating custom evaluators, then deploying scoped evaluation rules
+- Configuring and validating deployment-specific automatic Session evaluation
 - Running and resuming agent/model experiments with controlled repeats and paired comparisons
 - Capturing user-feedback scores
 - Upgrading compatible Langfuse SDK instrumentation used to report to HoloScope

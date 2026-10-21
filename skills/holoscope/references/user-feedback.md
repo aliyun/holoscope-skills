@@ -56,7 +56,7 @@ Send `dataType` explicitly and include a non-empty `comment` that describes the 
 
 ### 4. Verify
 
-Trigger a feedback action, then use the HoloScope-verified score read path: `GET /api/public/v3/scores?traceId=...&fields=core,details,subject`. These field groups return `comment`, `metadata`, and typed `subject` on the verified HoloScope pre-production deployment. Accept the readback only when it matches the created score ID (when supplied or returned), name, typed value, `dataType`, non-empty `comment`, and `subject.kind`/`subject.id`/`subject.traceId` association. A core-only response does not verify the feedback record because it omits the required explanation and association details.
+Trigger a feedback action, then use the documented score read path: `GET /api/public/v3/scores?traceId=...&fields=details,subject`. Core fields are always returned; `details` adds `comment` and `metadata`, and `subject` adds the typed target association. Accept the readback only when it matches the created score ID (when supplied or returned), name, typed value, `dataType`, non-empty `comment`, and `subject.kind`/`subject.id`/`subject.traceId` association. A core-only response does not verify the feedback record because it omits the required explanation and association details.
 
 Point users to what they can do with feedback data: filter traces by low scores and track score trends over time.
 

@@ -1,7 +1,7 @@
 {
   "name": "holoscope",
   "description": "A skill for Alibaba Cloud HoloScope (Hologres) agent observability, tracing, datasets, and evaluation.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": {
     "name": "HoloScope"
   },
